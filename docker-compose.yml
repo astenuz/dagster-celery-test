@@ -1,0 +1,57 @@
+version: '3'
+services:
+  database:
+    image: postgres
+    networks:
+      - default
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/dagster_test
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - default
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    command: sh -c "rabbitmq-plugins enable rabbitmq_management; rabbitmq-server"
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_ERLANG_COOKIE: 6085e2412b6fa88647466c6a81c0cea0
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+      RABBITMQ_DEFAULT_VHOST: dagster
+#    healthcheck:
+#      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+#      interval: 5s
+#      timeout: 15s
+#      retries: 3
+
+  dagster:
+    image: dagster_test
+    networks:
+      - default
+    ports:
+      - 2001:2001
+    depends_on:
+      - database
+      - rabbitmq
+
+  dagster-worker:
+    image: dagster_test
+    networks:
+      - default
+    entrypoint: /opt/dagster/app/worker.sh
+    restart: on-failure
+    depends_on:
+      - database
+      - rabbitmq
+volumes:
+  postgres: null

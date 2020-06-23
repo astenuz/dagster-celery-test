@@ -1,0 +1,3 @@
+execution:
+  celery:
+    broker: 'pyamqp://rabbitmq:rabbitmq@rabbitmq:5672/dagster'  # Optional[str]: The URL of the Celery broker
