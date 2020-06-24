@@ -143,7 +143,7 @@ data/
 # predictvia additional packages
 packages/
 
-Pipfile.lock
+# project interpreters
 .idea/
 .vscode/
 
