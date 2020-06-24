@@ -38,4 +38,4 @@ $ docker-compose up
 
 There could be some issues with rabbitmq. In theory, the configuration inside `.docker/rabbitmq/etc/rabbitmq.conf` should create a vhost called `dagster` that could be accesed with credentials `rabbitmq:rabbitmq`(`user:pass`). If this is not the case access the web management server in `localhost:15672` and create the vhost.
 
-- The compose spins up a dagit server and a dagster worker. they use the same image but different entrypoints. Test the pipeline by going to `localhost:2001` 
+- The compose spins up a dagit server and a dagster worker. they use the same image but different entrypoints. Test the pipeline by going to `localhost:2001` select the `parallel_pipeline` and the preset `celery` in the playground
