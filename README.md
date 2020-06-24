@@ -1,12 +1,12 @@
 # Dagster with celery and docker
 
-This is an example of a simple parallel pipeline packaged in docker and that runs with celery through a simple docker-compose up command. It uses:
+This is an example of a simple parallel pipeline packaged in docker that runs with celery through a simple `docker-compose up` command. It uses:
 
 - docker to deploy database, rabbitmq, dagster-dagit and dagster-celery workers
 - celery as execution backend
 - s3 as intermediate storage backend
 
-This example is meant to illustrate how to connect and configure all the components for a simple scalable dagster deployment. 
+This example is meant to illustrate how the components in a simple scalable dagster deployment are connected and configured. For instance, one particular aspect that is a little untouched in the documentation is how to use a custom broker connection string and what could be the contents of the yaml passed to the `dagster-celery` worker initialization. 
 
 ## Run example
 
