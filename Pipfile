@@ -11,6 +11,8 @@ dagit = "*"
 dagster-celery = "*"
 dagster-postgres = "*"
 dagster-cron = "*"
+dagster-aws = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.8"

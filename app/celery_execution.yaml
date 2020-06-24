@@ -3,4 +3,6 @@ execution:
     config:
       broker: 'pyamqp://rabbitmq:rabbitmq@rabbitmq:5672/dagster'  # Optional[str]: The URL of the Celery broker
 storage:
-  filesystem:
+  s3:
+    config:
+      s3_bucket: dgamba-dagster-test
