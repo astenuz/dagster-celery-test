@@ -28,11 +28,11 @@ services:
       RABBITMQ_DEFAULT_USER: rabbitmq
       RABBITMQ_DEFAULT_PASS: rabbitmq
       RABBITMQ_DEFAULT_VHOST: dagster
-#    healthcheck:
-#      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
-#      interval: 5s
-#      timeout: 15s
-#      retries: 3
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 3
 
   dagster:
     image: dagster_test
